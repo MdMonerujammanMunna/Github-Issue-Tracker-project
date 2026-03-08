@@ -42,8 +42,9 @@ const CardDisplay = (array) => {
                 <div class="p-4 space-y-3">
                     <div class="flex items-center justify-between">
                         <img src="${element.status == 'open' ? './assets/Open-Status.png' : './assets/Closed- Status .png'}" alt="Not Found">
-                     
-                        <div id="priority-container" onclick="modalFun(${element.id})" class="btn">${priorityFAN(element.priority)}</div>
+    
+
+                        <div id="priority-container" onclick="modalFun(${element.id})" class="btn outline-none px-[25px] py-[6px] rounded-full border-none shadow-none ${priorityFAN(element.priority)}">${(element.priority.toUpperCase())}</div>
                         
                     </div>
 
@@ -91,9 +92,18 @@ const labelsADD = (array) => {
     return (labelsAdder.join(" "))
 }
 
-// priority function
+// priority function for card
 const priorityFAN = (value) => {
-    return value.toUpperCase()
+    value.priority === 'low' ? 'btn-error' : 'btn-base-300'
+    if (value === "high") {
+        return ('text-error bg-secondary-content')
+    }
+    else if (value === 'low') {
+        return ('text-[#9CA3AF] bg-[#EEEFF2]')
+    }
+    else {
+        return ('text-warning bg-[#FFF6D1]')
+    }
 }
 
 const modalFun = (id) => {
@@ -127,14 +137,27 @@ const modalDisplay = (object) => {
         <div class="p-4 flex items-center bg-[#F8FAFC] gap-20">
             <div class="">
                 <p class="text-[#64748B]">Assignee:</p>
-                <h3 class="font-semibold">${object.author}</h3>
+                <h3 class="font-semibold">${object.author.toUpperCase()}</h3>
             </div>
             <div class="">
                 <p class="text-[#64748B]">Priority:</p>
-                <h3 class="font-semibold">High</h3>
+                <h3 class=" font-semibold px-[16px] py-[6px] rounded-full shadow-none outline-none border-none ${ObjectPriority(object.priority)}">${object.priority.toUpperCase()}</h3>
             </div>
         </div>
     </section>`
     modal.appendChild(div)
 
+}
+// priority function for modal
+const ObjectPriority = (value) => {
+    value.priority === 'low' ? 'btn-error' : 'btn-base-300'
+    if (value === "high") {
+        return ('text-white bg-[#EF4444]')
+    }
+    else if (value === 'low') {
+        return ('text-white bg-info')
+    }
+    else {
+        return ('text-white bg-warning')
+    }
 }
