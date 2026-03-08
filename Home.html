@@ -28,7 +28,7 @@
     </style>
 </head>
 
-<body>
+<body class="bg-base-300">
     <header>
         <nav>
             <div class="navbar bg-base-100 shadow-sm flex justify-between">
@@ -55,7 +55,38 @@
             <button onclick="buttonfun('Closed-button')" id="Closed-button"
                 class="btn btn-outline btn-primary px-[40px] py-[12px] shadow-none">Closed</button>
         </section>
+
+        <!-- 2nd manu section -->
+        <section class="mt-4 flex items-center justify-between bg-white shadow-sm  rounded-lg  p-8">
+            <div class="flex items-center gap-3">
+                <div class="p-3 bg-[#ECE4FF] rounded-full">
+                    <img src="./assets/Aperture.png" alt="">
+                </div>
+                <div class="">
+                    <h1 class="text-xl font-semibold"><span id="count">0</span> Issues</h1>
+                    <p class="text-[var(--second-color)]">Track and manage your project issues</p>
+                </div>
+            </div>
+
+            <!-- round left side -->
+            <div class="flex gap-4 items-center">
+                <div class="flex gap-1 items-center">
+                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                    <span>Open</span>
+                </div>
+                <div class="flex gap-1 items-center">
+                    <div class="w-3 h-3 bg-[#A855F7] rounded-full"></div>
+                    <span>Closed</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- main card section -->
+        <section id="Card-Container" class="my-6 grid grid-cols-4 gap-3 ">
+
+        </section>
     </main>
+    <script src="javaScript/homeFun.js"></script>
 </body>
 
 </html>
