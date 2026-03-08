@@ -137,5 +137,4 @@ const modalDisplay = (object) => {
     </section>`
     modal.appendChild(div)
 
-
 }
