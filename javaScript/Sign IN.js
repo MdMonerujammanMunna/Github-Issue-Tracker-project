@@ -9,7 +9,7 @@ const SingIN = () => {
 
     if (UserNameInput.value == userName && UserPasswordInput.value == Password) {
         alert("Welcome! Login Successfully")
-        window.location.assign("index.html")
+        window.location.assign("Home.html")
     }
     else {
         alert("Login Failed. Please check your Username or Password.")
