@@ -28,8 +28,55 @@
     </style>
 </head>
 
-<body>
 
+<body class="bg-base-300">
+    <section class="">
+        <div class=" flex justify-center items-center p-8">
+            <div class="input-fild">
+                <fieldset class="fieldset bg-base-100 border-base-300 rounded-box max-w-lg h-full border p-8 space-y-2">
+                    <div class="text-center mb-6">
+                        <i class="fa-brands fa-github text-[100px] mb-6"></i>
+                        <h1 class="text-2xl font-semibold text-[var(--first-color)] mb-2">GitHub Issues Tracker</h1>
+                        <p class="text-[var(--second-color)]">Sign in to manage your issues</p>
+                    </div>
+
+                    <label class="label text-[var(--first-color)] font-semibold ">Username</label>
+                    <input id="Username-input" type="text"
+                        class="input w-sm md:w-md lg:w-lg outline-none border-2 focus:border-2"
+                        placeholder="Enter Username" />
+                    <p class="mb-4 text-primary">Default: admin</p>
+
+                    <label class="label text-[var(--first-color)] font-semibold ">Password</label>
+                    <input id="Password-input" type="password"
+                        class="input w-sm md:w-md lg:w-lg outline-none border-2 focus:border-2"
+                        placeholder="Enter Password" />
+                    <p class="mb-6 text-primary">Default: admin123</p>
+
+                    <button class="btn btn-primary mt-4 w-sm md:w-md lg:w-lg shadow-none" onclick="SingIN()">Sign
+                        In</button>
+
+                    <div class="my-6">
+                        <div class="flex items-center justify-between gap-4">
+                            <hr class=" flex-1 border-[#E4E4E7] border-[1px]">
+                            <span class=" font-semibold text-[var(--first-color)]">OR</span>
+                            <hr class="flex-1 border-[#E4E4E7] border-[1px]">
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <h3 class="text-[14px] mb-2">Demo Credentials:</h3>
+                        <div class="py-6 bg-[#a4afbb] rounded-lg">
+                            <p><span class="font-semibold">Username:</span> admin</p>
+                            <p><span class="font-semibold">Password:</span> admin123</p>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </section>
+
+
+    <script src="javaScript/Sign IN.js"></script>
 </body>
 
 </html>
