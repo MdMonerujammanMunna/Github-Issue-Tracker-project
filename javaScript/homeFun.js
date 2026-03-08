@@ -43,7 +43,7 @@ const CardDisplay = (array) => {
                     <div class="flex items-center justify-between">
                         <img src="${element.status == 'open' ? './assets/Open-Status.png' : './assets/Closed- Status .png'}" alt="Not Found">
                      
-                        <div id="priority-container">${priorityFAN(element.priority)}</div>
+                        <div id="priority-container" onclick="modalFun(${element.id})" class="btn">${priorityFAN(element.priority)}</div>
                         
                     </div>
 
@@ -62,7 +62,7 @@ const CardDisplay = (array) => {
 
                 <div class="p-4 space-y-2 text-[#64748B] text-xs ">
                     <p class="font-semibold">#${element.id}  ${element.author.toUpperCase()}</p>
-                    <p>${element.createdAt}</p>
+                    <p>${element.createdAt.slice(0, 10)}</p>
                 </div>
             </div>`
         card.appendChild(div)
@@ -93,6 +93,49 @@ const labelsADD = (array) => {
 
 // priority function
 const priorityFAN = (value) => {
-    return value
+    return value.toUpperCase()
+}
+
+const modalFun = (id) => {
+    fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
+        .then(res => res.json())
+        .then(value => modalDisplay(value.data))
+}
+const modalDisplay = (object) => {
+    document.getElementById("modal").showModal()
+    let modal = document.getElementById("modal-container")
+    modal.innerHTML = ` <section class="space-y-6">
+        <!-- text -->
+        <div class="space-y-2">
+            <h2 class="text-2xl font-bold">${object.title}</h2>
+            <ul class="flex list-disc gap-3 items-center text-xs text-[#64748B]">
+                <li
+                    class="list-none mr-5 btn px-2 py-[6px] ${object.status == 'open' ? 'bg-green-500' : 'bg-[#A855F7]'} rounded-full text-white shadow-none outline-none font-medium">
+                    ${object.status}</li>
+                <li class="mr-5">Opened by ${object.assignee}</li>
+                <li>${object.updatedAt.slice(0, 10)}</li>
+            </ul>
+        </div>
+        <!-- bug  -->
+       <div class=" space-y-1">${labelsADD(object.labels)}</div>
+        <!-- para -->
+        <div class="">
+            <p class="text-[#64748B]">The navigation menu doesn't collapse properly on mobile devices. Need to fix the
+                responsive behavior.</p>
+        </div>
+        <!-- some -->
+        <div class="p-4 flex items-center bg-[#F8FAFC] gap-20">
+            <div class="">
+                <p class="text-[#64748B]">Assignee:</p>
+                <h3 class="font-semibold">${object.author}</h3>
+            </div>
+            <div class="">
+                <p class="text-[#64748B]">Priority:</p>
+                <h3 class="font-semibold">High</h3>
+            </div>
+        </div>
+    </section>`
+    modal.appendChild(div)
+
 
 }
