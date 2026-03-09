@@ -38,15 +38,29 @@
                     <h1 class="text-2xl font-semibold text-[var(--first-color)]">GitHub Issues Tracker</h1>
                 </a>
                 <div class="flex gap-4">
-                    <input type="text" placeholder="Search issues..." class="input
-                    input-bordered border-2 md:w-auto outline-none" />
+                    <div class="join">
+                        <div>
+                            <label class="input validator join-item outline-none border-2">
+                                <svg class="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <g stroke-linejoin="round" stroke-linecap="round" stroke-width="2.5" fill="none"
+                                        stroke="currentColor">
+                                        <circle cx="11" cy="11" r="8"></circle>
+                                        <path d="m21 21-4.3-4.3"></path>
+                                    </g>
+                                </svg>
+                                <input type="search" placeholder="Search issues..." id="Btn-input" />
+                            </label>
+                        </div>
+                        <button class="btn btn-primary shadow-none join-item" id="Btn-search">Search</button>
+                    </div>
+
                     <button class="btn btn-primary shadow-none"><i class="fa-solid fa-plus"></i> New Issue</button>
                 </div>
             </div>
         </nav>
     </header>
 
-    <main class="mx-[50px] md:mx-[100px] lg:mx-[200px] mt-[60px]  ">
+    <main class="mx-[50px] md:mx-[100px]  mt-[60px]  ">
         <!-- button section -->
         <section class=" flex gap-4 bg-white p-8 rounded-lg shadow-sm">
             <button onclick="buttonfun('All-button')" id="All-button"
@@ -83,9 +97,23 @@
         </section>
 
         <!-- main card section -->
+        <!-- loading section -->
+        <section id="Loading-section" class="flex justify-center items-center py-10 hidden">
+            <span class="loading loading-infinity loading-xl size-30"></span>
+        </section>
+        <!-- all card -->
+
         <section id="Card-Container" class="my-6 grid md:grid-cols-2 lg:grid-cols-4 gap-3 ">
 
         </section>
+        <!-- open card -->
+        <section id="Open-container" class="my-6 grid md:grid-cols-2 lg:grid-cols-4 gap-3 hidden">
+        </section>
+        <!-- close card -->
+        <section id="Close-container" class="my-6 grid md:grid-cols-2 lg:grid-cols-4 gap-3 hidden">
+
+        </section>
+
 
         <!-- Open the modal using ID.showModal() method -->
         <dialog id="modal" class="modal modal-bottom sm:modal-middle">

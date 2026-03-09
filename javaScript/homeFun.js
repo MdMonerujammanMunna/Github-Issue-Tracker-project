@@ -1,3 +1,4 @@
+// button selection
 const buttonfun = (button) => {
     let all = document.getElementById('All-button')
     let open = document.getElementById("Open-button")
@@ -23,11 +24,26 @@ const buttonfun = (button) => {
 buttonfun("All-button")
 
 
+// Loading function for all card
+const Loadingall = (statues) => {
+    if (statues == true) {
+        document.getElementById("Loading-section").classList.remove("hidden")
+        document.getElementById("Card-Container").classList.add("hidden")
+    }
+    else {
+        document.getElementById("Card-Container").classList.remove("hidden")
+        document.getElementById("Loading-section").classList.add("hidden")
+    }
+}
 // card mani design
+let allArray = []
 const CardDesign = () => {
+    Loadingall(true)
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
         .then(res => res.json())
-        .then(value => CardDisplay(value.data))
+        .then(value => {
+            CardDisplay(value.data)
+        })
 }
 CardDesign()
 
@@ -67,7 +83,9 @@ const CardDisplay = (array) => {
                 </div>
             </div>`
         card.appendChild(div)
+        allArray.push(div)
     });
+    Loadingall(false)
 }
 
 // labels add function 
@@ -161,3 +179,140 @@ const ObjectPriority = (value) => {
         return ('text-white bg-warning')
     }
 }
+
+
+// Open card
+let openArray = []
+const OpenDesign = () => {
+    fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
+        .then(res => res.json())
+        .then(value => {
+            Opencontainer(value.data)
+        })
+}
+OpenDesign()
+const Opencontainer = (array) => {
+    // let values = document.getElementById("count").innerText = array.length;
+    let card = document.getElementById("Open-container")
+    array.forEach(element => {
+        if (element.status === 'open') {
+
+            const div = document.createElement("div")
+            div.innerHTML = `
+     <div class="flex-1 bg-white  rounded-lg border-t-4 ${element.status == 'open' ? 'border-green-500' : 'border-[#A855F7]'} mb-[12px]">
+                <div class="p-4 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <img src="${element.status == 'open' ? './assets/Open-Status.png' : './assets/Closed- Status .png'}" alt="Not Found">
+    
+
+                        <div id="priority-container" onclick="modalFun(${element.id})" class="btn outline-none px-[25px] py-[6px] rounded-full border-none shadow-none ${priorityFAN(element.priority)}">${(element.priority.toUpperCase())}</div>
+                        
+                    </div>
+
+
+                    <div class="space-y-1">
+                        <h1 class="text-sm font-semibold">${element.title}</h1>
+                        <p class="text-xs text-[var(--second-color)]">${element.description}</p>
+                    </div>
+
+                  
+                     <div class=" space-y-1">${labelsADD(element.labels)}</div>
+      
+
+                <hr class="border-[#E4E4E7]">
+
+
+                <div class="p-4 space-y-2 text-[#64748B] text-xs ">
+                    <p class="font-semibold">#${element.id}  ${element.author.toUpperCase()}</p>
+                    <p>${element.createdAt.slice(0, 10)}</p>
+                </div>
+            </div>`
+            card.appendChild(div)
+            openArray.push(div)
+        }
+        // arrayaddfun(element.status)
+    });
+
+}
+
+// close card
+let closeArray = []
+const CloseDesign = () => {
+    fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
+        .then(res => res.json())
+        .then(value => {
+            closecontainer(value.data)
+        })
+}
+CloseDesign()
+const closecontainer = (array) => {
+    let card = document.getElementById("Close-container")
+    array.forEach(element => {
+        if (element.status === 'closed') {
+            const div = document.createElement("div")
+            div.innerHTML = `
+     <div class="flex-1 bg-white  rounded-lg border-t-4 ${element.status == 'open' ? 'border-green-500' : 'border-[#A855F7]'} mb-[12px]">
+                <div class="p-4 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <img src="${element.status == 'open' ? './assets/Open-Status.png' : './assets/Closed- Status .png'}" alt="Not Found">
+    
+
+                        <div id="priority-container" onclick="modalFun(${element.id})" class="btn outline-none px-[25px] py-[6px] rounded-full border-none shadow-none ${priorityFAN(element.priority)}">${(element.priority.toUpperCase())}</div>
+                        
+                    </div>
+
+
+                    <div class="space-y-1">
+                        <h1 class="text-sm font-semibold">${element.title}</h1>
+                        <p class="text-xs text-[var(--second-color)]">${element.description}</p>
+                    </div>
+
+                  
+                     <div class=" space-y-1">${labelsADD(element.labels)}</div>
+      
+
+                <hr class="border-[#E4E4E7]">
+
+
+                <div class="p-4 space-y-2 text-[#64748B] text-xs ">
+                    <p class="font-semibold">#${element.id}  ${element.author.toUpperCase()}</p>
+                    <p>${element.createdAt.slice(0, 10)}</p>
+                </div>
+            </div>`
+            card.appendChild(div)
+            closeArray.push(div)
+        }
+    });
+
+}
+// for card toggling
+function called() {
+    let all = document.getElementById('All-button')
+    let open = document.getElementById("Open-button")
+    let close = document.getElementById("Closed-button")
+
+    let allcard = document.getElementById("Card-Container");
+    let opencard = document.getElementById("Open-container");
+    let closecard = document.getElementById("Close-container");
+
+    let span = document.getElementById("count")
+    all.addEventListener("click", () => {
+        span.innerText = allArray.length;
+        allcard.classList.remove("hidden")
+        opencard.classList.add("hidden")
+        closecard.classList.add("hidden")
+    })
+    open.addEventListener("click", () => {
+        span.innerText = openArray.length;
+        opencard.classList.remove("hidden")
+        allcard.classList.add("hidden")
+        closecard.classList.add("hidden")
+    })
+    close.addEventListener("click", () => {
+        span.innerText = closeArray.length
+        closecard.classList.remove("hidden")
+        allcard.classList.add("hidden")
+        opencard.classList.add("hidden")
+    })
+}
+called()
