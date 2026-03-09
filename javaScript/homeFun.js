@@ -73,13 +73,13 @@ const CardDisplay = (array) => {
     array.forEach(element => {
         const div = document.createElement("div")
         div.innerHTML = `
-     <div class="flex-1 bg-white  rounded-lg border-t-4 ${element.status == 'open' ? 'border-green-500' : 'border-[#A855F7]'} mb-[12px]">
+     <div class="flex-1 bg-white  rounded-lg border-t-4 ${element.status == 'open' ? 'border-green-500' : 'border-[#A855F7]'} mb-[12px]" onclick="modalFun(${element.id})">
                 <div class="p-4 space-y-3">
                     <div class="flex items-center justify-between">
                         <img src="${element.status == 'open' ? './assets/Open-Status.png' : './assets/Closed- Status .png'}" alt="Not Found">
     
 
-                        <div id="priority-container" onclick="modalFun(${element.id})" class="btn outline-none px-[25px] py-[6px] rounded-full border-none shadow-none ${priorityFAN(element.priority)}">${(element.priority.toUpperCase())}</div>
+                        <div id="priority-container" class="btn outline-none px-[25px] py-[6px] rounded-full border-none shadow-none ${priorityFAN(element.priority)}">${(element.priority.toUpperCase())}</div>
                         
                     </div>
 
@@ -218,13 +218,13 @@ const Opencontainer = (array) => {
 
             const div = document.createElement("div")
             div.innerHTML = `
-     <div class="flex-1 bg-white  rounded-lg border-t-4 ${element.status == 'open' ? 'border-green-500' : 'border-[#A855F7]'} mb-[12px]">
+     <div class="flex-1 bg-white  rounded-lg border-t-4 ${element.status == 'open' ? 'border-green-500' : 'border-[#A855F7]'} mb-[12px]" onclick="modalFun(${element.id})">
                 <div class="p-4 space-y-3">
                     <div class="flex items-center justify-between">
                         <img src="${element.status == 'open' ? './assets/Open-Status.png' : './assets/Closed- Status .png'}" alt="Not Found">
     
 
-                        <div id="priority-container" onclick="modalFun(${element.id})" class="btn outline-none px-[25px] py-[6px] rounded-full border-none shadow-none ${priorityFAN(element.priority)}">${(element.priority.toUpperCase())}</div>
+                        <div id="priority-container"  class="btn outline-none px-[25px] py-[6px] rounded-full border-none shadow-none ${priorityFAN(element.priority)}">${(element.priority.toUpperCase())}</div>
                         
                     </div>
 
@@ -270,13 +270,13 @@ const closecontainer = (array) => {
         if (element.status === 'closed') {
             const div = document.createElement("div")
             div.innerHTML = `
-     <div class="flex-1 bg-white  rounded-lg border-t-4 ${element.status == 'open' ? 'border-green-500' : 'border-[#A855F7]'} mb-[12px]">
+     <div class="flex-1 bg-white  rounded-lg border-t-4 ${element.status == 'open' ? 'border-green-500' : 'border-[#A855F7]'} mb-[12px]" onclick="modalFun(${element.id})">
                 <div class="p-4 space-y-3">
                     <div class="flex items-center justify-between">
                         <img src="${element.status == 'open' ? './assets/Open-Status.png' : './assets/Closed- Status .png'}" alt="Not Found">
     
 
-                        <div id="priority-container" onclick="modalFun(${element.id})" class="btn outline-none px-[25px] py-[6px] rounded-full border-none shadow-none ${priorityFAN(element.priority)}">${(element.priority.toUpperCase())}</div>
+                        <div id="priority-container"  class="btn outline-none px-[25px] py-[6px] rounded-full border-none shadow-none ${priorityFAN(element.priority)}">${(element.priority.toUpperCase())}</div>
                         
                     </div>
 
