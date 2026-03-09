@@ -159,7 +159,7 @@ const modalDisplay = (object) => {
                 <li
                     class="list-none mr-5 btn px-2 py-[6px] ${object.status == 'open' ? 'bg-green-500' : 'bg-[#A855F7]'} rounded-full text-white shadow-none outline-none font-medium">
                     ${object.status}</li>
-                <li class="mr-5">Opened by ${object.assignee}</li>
+                <li class="mr-5">Opened by ${object.author}</li>
                 <li>${object.updatedAt.slice(0, 10)}</li>
             </ul>
         </div>
