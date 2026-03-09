@@ -23,6 +23,24 @@ const buttonfun = (button) => {
 }
 buttonfun("All-button")
 
+// search section
+function search() {
+    const Enter = document.getElementById("Btn-search")
+    const value = document.getElementById("Btn-input")
+    Enter.addEventListener("click", () => {
+        let getInput = value.value.toLowerCase().trim()
+        fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${getInput}`)
+            .then(res => res.json())
+            .then(value => {
+                let mainword = value.data
+                const filterWord = mainword.filter(ti => ti.title.toLowerCase().includes(getInput))
+                CardDisplay(filterWord)
+            })
+    })
+}
+search()
+
+
 
 // Loading function for all card
 const Loadingall = (statues) => {
@@ -36,7 +54,7 @@ const Loadingall = (statues) => {
     }
 }
 // card mani design
-let allArray = []
+// let allArray = []
 const CardDesign = () => {
     Loadingall(true)
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
@@ -51,6 +69,7 @@ CardDesign()
 const CardDisplay = (array) => {
     let values = document.getElementById("count").innerText = array.length;
     let card = document.getElementById("Card-Container")
+    card.innerHTML = ""
     array.forEach(element => {
         const div = document.createElement("div")
         div.innerHTML = `
@@ -83,7 +102,7 @@ const CardDisplay = (array) => {
                 </div>
             </div>`
         card.appendChild(div)
-        allArray.push(div)
+
     });
     Loadingall(false)
 }
@@ -297,13 +316,13 @@ function called() {
 
     let span = document.getElementById("count")
     all.addEventListener("click", () => {
-        span.innerText = allArray.length;
+        span.innerText = allcard.childNodes.length;
         allcard.classList.remove("hidden")
         opencard.classList.add("hidden")
         closecard.classList.add("hidden")
     })
     open.addEventListener("click", () => {
-        span.innerText = openArray.length;
+        span.innerText = openArray.length
         opencard.classList.remove("hidden")
         allcard.classList.add("hidden")
         closecard.classList.add("hidden")
